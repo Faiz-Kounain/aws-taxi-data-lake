@@ -1,0 +1,9 @@
+{
+  "feed_name": "yellow_trips",
+  "source_path": "raw/yellow_trips/",
+  "format": "parquet",
+  "required_columns": ["tpep_pickup_datetime", "total_amount"],
+  "dedupe": true,
+  "partition_by": ["year", "month"],
+  "target_path": "framework/clean/yellow_trips/"
+}

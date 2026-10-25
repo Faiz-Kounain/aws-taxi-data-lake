@@ -1,0 +1,25 @@
+{
+  "StartAt": "RunFramework",
+  "States": {
+    "RunFramework": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": { "JobName": "taxi-feed-framework", "Arguments": { "--FEED.$": "$.feed" } },
+      "Retry": [ { "ErrorEquals": ["States.ALL"], "IntervalSeconds": 60, "MaxAttempts": 1 } ],
+      "Catch": [ { "ErrorEquals": ["States.ALL"], "ResultPath": "$.error", "Next": "SendAlert" } ],
+      "Next": "Done"
+    },
+    "SendAlert": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "arn:aws:sns:ap-southeast-2:<ACCOUNT_ID>:taxi-pipeline-alerts",
+        "Subject": "Taxi pipeline FAILED",
+        "Message.$": "States.JsonToString($)"
+      },
+      "Next": "Failed"
+    },
+    "Failed": { "Type": "Fail" },
+    "Done":   { "Type": "Succeed" }
+  }
+}

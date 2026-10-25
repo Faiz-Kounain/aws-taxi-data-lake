@@ -1,0 +1,9 @@
+{
+  "feed_name": "green_trips",
+  "source_path": "raw/green_trips/",
+  "format": "parquet",
+  "required_columns": ["lpep_pickup_datetime", "total_amount"],
+  "dedupe": true,
+  "partition_by": ["year", "month"],
+  "target_path": "framework/clean/green_trips/"
+}

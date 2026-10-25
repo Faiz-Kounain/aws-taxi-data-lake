@@ -1,0 +1,9 @@
+{
+  "feed_name": "broken_feed",
+  "source_path": "raw/broken_feed/",
+  "format": "parquet",
+  "required_columns": ["id"],
+  "dedupe": true,
+  "partition_by": [],
+  "target_path": "framework/clean/broken_feed/"
+}

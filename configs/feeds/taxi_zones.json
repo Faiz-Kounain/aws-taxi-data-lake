@@ -1,0 +1,9 @@
+{
+  "feed_name": "taxi_zones",
+  "source_path": "raw/taxi_zones/",
+  "format": "csv",
+  "required_columns": ["LocationID", "Zone"],
+  "dedupe": true,
+  "partition_by": [],
+  "target_path": "framework/clean/taxi_zones/"
+}
