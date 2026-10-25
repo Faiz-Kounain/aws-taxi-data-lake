@@ -1,0 +1,8 @@
+# never commit data or secrets
+*.parquet
+*.csv
+.env
+.aws/
+__pycache__/
+*.pyc
+.DS_Store
